@@ -4,32 +4,37 @@
   <head>
     <meta charset="utf-8">
     <script>
+      function BodySetColor(color){
+        document.querySelector('body').style.color = color;
+      }
+      function LinksSetColor(color){
+        var alist = document.querySelectorAll('a');
+        var i = 0;
+        while(i < alist.length){
+          alist[i].style.color = color;
+          i = i + 1;
+      }
+    }
+      function BodySetBackgroundColor(color){
+        document.querySelector('body').style.backgroundColor = color;
+      }
       function nightDayHandler(self){
         var target = document.querySelector('body');
         if(self.value === 'night'){
-          target.style.backgroundColor = 'black';
-          target.style.color = 'white';
+          BodySetBackgroundColor('black');
+          BodySetColor('white');
           self.value = 'day';
 
-          var alist = document.querySelectorAll('a');
-          var i = 0;
-          while(i < alist.length){
-          	alist[i].style.color = 'powderblue';
-          	i = i + 1;
-          }
-        } else {
-          target.style.backgroundColor = 'white';
-          target.style.color = 'black';
-          this.value = 'night';
+          LinksSetColor('powderblue');
 
-          var alist = document.querySelectorAll('a');
-          var i = 0;
-          while(i < alist.length){
-          	alist[i].style.color = 'blue';
-          	i = i + 1;
+        } else {
+          BodySetBackgroundColor('white');
+          BodySetColor('black');
+          self.value = 'night';
+
+          LinksSetColor('blue');
           }
         }
-      }
     </script>
     <title></title>
   </head>
@@ -50,7 +55,7 @@
       ">
 
       <input type="button" value="night" onclick="
-        nightDayHandler(self);
+        nightDayHandler(this);
       ">
       <ol>
         <li><a href="1.html" style = "color: blue;">HTML</a></li>
